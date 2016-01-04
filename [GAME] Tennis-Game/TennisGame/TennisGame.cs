@@ -4,13 +4,15 @@ using System.Diagnostics;
 
 public class TennisGame
 {
-    const int PlayerWidth = 6;
-    const char PlayerBody = '_';
-    const char Ball = 'O';
+    private const int PlayerWidth = 6;
+    private const char PlayerBody = '_';
+    private const char Ball = 'O';
 
     static string direction = string.Empty;
     static int ballRow = 0;
     static int ballCol = 0;
+
+    private static string[] directions = new string[] { "upRight", "upLeft", "downLeft", "downRight" };
 
     public static void Main()
     {
@@ -23,7 +25,6 @@ public class TennisGame
         PrintPlayer(playerPosition);
 
         Random randomGenerator = new Random();
-        string[] directions = new string[] { "upRight", "upLeft", "downLeft", "downRight" };
         direction = directions[randomGenerator.Next(0, directions.Length)];
 
         ballRow = randomGenerator.Next(0, 2);
@@ -63,7 +64,7 @@ public class TennisGame
             PrintBall();
 
             if (ballRow == Console.WindowHeight - 1 &&
-                (ballCol < playerPosition || ballCol > playerPosition + PlayerWidth))
+                (ballCol < playerPosition || ballCol > (playerPosition + PlayerWidth)))
             {
                 timePlayed.Stop();
 
